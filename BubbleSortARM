@@ -1,0 +1,21 @@
+array			DCD		5, 23, 2, 7, 1, 0, 1, 3, 9, 2, 7, 13
+				mov		r6, #0
+BiggerLoopStart			mov		r0, #0x100
+				mov		r1, #0x104
+				mov		r4, #0
+				mov		r5, #0
+LoopStart			ldr		r2, [r0, r4]
+				ldr		r3, [r1, r4]
+				
+				cmp		r2, r3
+				BLT		SwapEnd
+				str		r3, [r0, r4]
+				str		r2, [r1, r4]
+SwapEnd				add		r4, r4, #4
+				add		r5, r5, #1
+				cmp		r5, #12
+				BNE		LoopStart
+				add		r6, r6, #1
+				cmp		r6, #12
+				BNE		BiggerLoopStart
+				
